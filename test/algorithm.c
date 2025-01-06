@@ -364,7 +364,7 @@ static bool search(int level, branch_t *branches) {
                 child_state->last_move_in_time[d] < k &&
                 hist[k - 1]->q[d][hist[k - 1]->h[d]] >= p) {
               dominated = true; // RB: choose alternative transitive stack
-              break; // no need to test more
+              break;            // no need to test more
             }
           }
           if (dominated) {

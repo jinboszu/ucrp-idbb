@@ -203,9 +203,8 @@ static bool search(int level, branch_t *branches) {
     /*
      * Check feasibility
      */
-    int n_empty_slots =
-        (n_stacks - 1) * n_tiers - (curr_state->n_blocks - curr_state->h[sn]);
-    if (curr_state->h[sn] == 0 || n_empty_slots == 0) {
+    if (curr_state->h[sn] == 0 ||
+        curr_state->n_blocks - curr_state->h[sn] == (n_stacks - 1) * n_tiers) {
       continue;
     }
 
@@ -520,6 +519,7 @@ static bool search(int level, branch_t *branches) {
       path[level].s = branches[i].src;
       path[level].d = branches[i].dst;
 
+      hist[level + 1].lb = branches[i].child_lb;
       reuse_state_head(hist[level + 1].state, branches[i].child_state);
 
       int dn = path[level].d;
@@ -620,6 +620,7 @@ report_t *solve(instance_t *inst, int _t) {
   /*
    * Initialize history
    */
+  hist[0].lb = root_lb;
   hist[0].state = root_state;
 
   /*
