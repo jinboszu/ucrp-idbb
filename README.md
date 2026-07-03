@@ -7,7 +7,7 @@ This project is written in C99.
 **Versions:**
 
 - `main`: Official version
-- `test`: Simplified version for beginners
+- `simp`: Simplified version for beginners
 
 **Remark on the name of the JZW heuristic:**
 
